@@ -1,19 +1,21 @@
+"use client"
+
+import { RichTextEditor } from "@/components/editor"
 import { Button } from "@workspace/ui/components/button"
+import { Show } from "@clerk/nextjs";
+import { createEntry } from "./actions/journal";
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
+    <main className="h-[calc(100vh-3rem)] max-w-3xl mx-auto flex flex-col px-6 py-4">
+      <form action={createEntry} className="flex-1 relative w-full h-full">
+        <RichTextEditor />
+        <div className="absolute w-fit h-fit bottom-0 right-0">
+          <Show when="signed-in">
+            <Button type="submit" className='bg-(--ink) hover:bg-(--ink-faint)' size="lg">Submit</Button>
+          </Show>
         </div>
-        <div className="text-muted-foreground font-mono text-xs">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
+      </form>
+    </main>
   )
 }

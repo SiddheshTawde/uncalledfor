@@ -1,0 +1,16 @@
+{
+  "header": {
+    "title": "Uncalled For",
+    "subtitle": "a journal",
+    "navigation": {
+      "journals": {
+        "title": "Journals",
+        "href": "/journals"
+      },
+      "write": {
+        "title": "Write",
+        "href": "/"
+      }
+    }
+  }
+}
