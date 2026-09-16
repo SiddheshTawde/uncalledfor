@@ -1,21 +1,98 @@
-# shadcn/ui monorepo template
+# Uncalled For
 
-This is a Next.js monorepo template with shadcn/ui.
+*A journaling app with an attitude problem.*
 
-## Adding components
+Write your entry. Get unsolicited advice back — blunt, funny, occasionally too
+accurate. Nobody asked for this. Everybody needs it.
 
-To add components to your app, run the following command at the root of your `web` app:
+---
+
+## What it does
+
+Uncalled For is a journal that talks back. Every entry you write gets a
+short, banter-y, unsolicited response — never cruel, never a personal attack,
+just the kind of honest nudge you'd get from a friend who's done being polite
+about it. If an entry reads as genuinely heavy rather than everyday griping,
+the app drops the bit and responds like an actual human would.
+
+## Stack
+
+- **Framework:** Next.js (App Router, Server Actions)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Auth:** Clerk
+- **Database:** Neon (serverless Postgres)
+- **AI:** Groq (`openai/gpt-oss-120b`) for advice generation
+
+## Getting started
+
+### 1. Clone and install
 
 ```bash
-pnpm dlx shadcn@latest add button -c apps/web
+git clone <your-repo-url>
+cd uncalled-for
+npm install
 ```
 
-This will place the ui components in the `packages/ui/src/components` directory.
+### 2. Set up environment variables
 
-## Using components
+Create a `.env.local` file:
 
-To use the components in your app, import them from the `ui` package.
-
-```tsx
-import { Button } from "@workspace/ui/components/button";
 ```
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+
+# Neon
+DATABASE_URL=
+
+# Groq
+GROQ_API_KEY=
+```
+
+- Get Clerk keys from [clerk.com](https://clerk.com)
+- Get a Neon connection string from [neon.tech](https://neon.tech)
+- Get a free Groq API key (no card required) from [console.groq.com](https://console.groq.com)
+
+### 3. Set up the database
+
+Run this against your Neon database (via the Neon SQL editor or your client
+of choice):
+
+```sql
+CREATE TABLE entries (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id TEXT NOT NULL,
+  entry TEXT NOT NULL,
+  comment TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+### 4. Run it
+
+```bash
+npm run dev
+```
+
+Visit `http://localhost:3000`.
+
+## How the advice engine works
+
+Each entry is sent to Groq along with a system prompt that defines the app's
+voice: funny, blunt, self-deprecating — but always aimed at the situation or
+behavior, never at the person's character. A built-in escape hatch detects
+genuine distress and drops the humor entirely in favor of a plain, supportive
+response. The prompt lives in its own file so the tone can be tuned without
+touching application code.
+
+## Roadmap / ideas
+
+- [ ] Mobile app (React Native/Expo), reusing the same advice-engine logic
+- [ ] Mood tagging per entry
+- [ ] Entry search and filtering
+- [ ] Export entries
+
+## License
+
+[MIT](LICENSE) — do whatever you want with it, no advice needed (for once).
