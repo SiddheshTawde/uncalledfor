@@ -1,5 +1,3 @@
-"use client"
-
 import { RichTextEditor } from "@/components/editor"
 import { Button } from "@workspace/ui/components/button"
 import { Show } from "@clerk/nextjs";

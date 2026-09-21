@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs/server"
 import { sql } from "@/lib/db"
 import { revalidatePath } from "next/cache"
 import { generateAdvice } from "@/prompt/ai"
-import { Entry } from "@/types/entry"
+import { redirect } from "next/navigation"
 
 export async function createEntry(formData: FormData) {
   const { userId } = await auth()
@@ -19,7 +19,8 @@ export async function createEntry(formData: FormData) {
     VALUES (${userId}, ${entry}, ${comment})
   `
 
-  revalidatePath("/journal")
+  revalidatePath("/entries")
+  redirect("/entries")
 }
 
 export async function getEntries() {
@@ -31,4 +32,15 @@ export async function getEntries() {
     WHERE user_id = ${userId}
     ORDER BY created_at DESC
   `
+}
+
+export async function deleteEntry(id: string) {
+  if (!id) throw new Error("Cannot delete entry")
+
+  await sql`
+    DELETE FROM entries
+    WHERE id = ${id}
+  `
+
+  revalidatePath("/entries")
 }
