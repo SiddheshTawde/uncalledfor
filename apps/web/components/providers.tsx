@@ -1,9 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { ClerkProvider } from "@clerk/nextjs"
 import { ThemeProvider as NextThemesProvider } from "@wrksz/themes/next"
 
-function ThemeProvider({
+function Provider({
   children,
   ...props
 }: React.ComponentProps<typeof NextThemesProvider>) {
@@ -15,9 +16,11 @@ function ThemeProvider({
       disableTransitionOnChange
       {...props}
     >
-      {children}
+      <ClerkProvider>
+        {children}
+      </ClerkProvider>
     </NextThemesProvider>
   )
 }
 
-export { ThemeProvider }
+export { Provider }

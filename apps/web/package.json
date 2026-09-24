@@ -16,10 +16,13 @@
     "@neondatabase/serverless": "^1.1.0",
     "@workspace/ui": "workspace:*",
     "@wrksz/themes": "^2.0.2",
+    "cn": "^0.3.0",
     "lucide-react": "^1.46.0",
+    "motion": "^13.4.2",
     "next": "16.3.3",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

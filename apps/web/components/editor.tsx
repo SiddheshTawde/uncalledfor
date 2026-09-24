@@ -1,5 +1,13 @@
+import { Textarea } from "@workspace/ui/components/textarea"
+
 export const RichTextEditor = () => {
     return (
-        <textarea id="main-editor" name="entry" placeholder="What's on your mind?" className="font-serif text-lg text-(--ink) italic h-full w-full outline-0 border-0 resize-none" required autoFocus></textarea>
+        <Textarea
+            id="main-editor"
+            name="entry"
+            placeholder="What's on your mind?"
+            required autoFocus
+            className="flex-1 max-h-[92vh] pb-16 w-full rounded resize-none outline-none placeholder:italic"
+        />
     )
 }

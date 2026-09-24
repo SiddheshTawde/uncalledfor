@@ -1,39 +1,50 @@
 "use client"
 
-import React from "react"
-import { useRouter, usePathname } from "next/navigation";
+import React, { useState } from "react"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@workspace/ui/components/select"
 import { Show, SignInButton, UserButton } from "@clerk/nextjs";
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
+
+const items = [
+  { label: "a journal", value: "journal" },
+  { label: "a memory", value: "entries" },
+]
 
 export function Header() {
-  const router = useRouter()
-  const pathname = usePathname()
-
-  const isEditor = pathname === "/"
-
+  const [page, changePage] = useState(items[0]);
   return (
-    <header className="h-12 max-w-3xl mx-auto px-6 pt-4 pb-0 flex items-center justify-between shrink-0">
+    <header className="w-full max-w-3xl mx-auto px-6 pt-4 pb-0 flex items-end justify-between">
       <div className="flex items-baseline gap-2">
-        <span className="font-sans text-base font-semibold tracking-[-0.02em] text-(--ink)">
-          Uncalled For
+        <span className="font-sans text-xl font-semibold tracking-[-0.02em] hover:text-primary hover:cursor-none">
+          Uncalled for
         </span>
-        <span className="font-mono text-[0.65rem] text-(--ink-faint)">
-          a journal
-        </span>
+        <Select items={items} value={page} onValueChange={(value) => changePage(value!)}>
+          <SelectTrigger className="h-fit! p-0 bg-transparent text-xs text-foreground/60">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {items.map((item) => (
+                <SelectItem key={item.value} value={item.value} className="text-xs capitalize">
+                  {item.label?.split(' ')?.[1]}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
-      <div className="flex items-center gap-2">
+      <div>
         <Show when="signed-out">
           <SignInButton mode="modal" />
         </Show>
         <Show when="signed-in">
-          {isEditor ?
-            <button className="font-sans text-[0.72rem] font-medium text-(--ink-faint) bg-transparent border-none cursor-pointer py-1 rounded-full transition-colors hover:text-(--ink) flex items-center gap-1" onClick={() => router.push('/entries')}>
-              entries <ArrowRightIcon size={12} />
-            </button> :
-            <button className="font-sans text-[0.72rem] font-medium text-(--ink-faint) bg-transparent border-none cursor-pointer py-1 rounded-full transition-colors hover:text-(--ink) flex items-center gap-1" onClick={() => router.back()}>
-              <ArrowLeftIcon size={12} /> write
-            </button>
-          }
+          <UserButton />
         </Show>
       </div>
     </header >
