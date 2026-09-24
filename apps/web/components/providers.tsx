@@ -4,6 +4,7 @@ import * as React from "react"
 import { ClerkProvider } from "@clerk/nextjs"
 import { ThemeProvider as NextThemesProvider } from "@wrksz/themes/next"
 import { NavigationStoreProvider } from "@/providers/navigation-provider"
+import { EntriesStoreProvider } from "@/providers/entries-provider"
 
 function Provider({
   children,
@@ -19,7 +20,9 @@ function Provider({
     >
       <ClerkProvider>
         <NavigationStoreProvider>
-          {children}
+          <EntriesStoreProvider>
+            {children}
+          </EntriesStoreProvider>
         </NavigationStoreProvider>
       </ClerkProvider>
     </NextThemesProvider>

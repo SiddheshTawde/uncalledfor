@@ -2,7 +2,7 @@
 
 import { useStore } from 'zustand'
 import { createContext, useContext, useRef, ReactNode } from 'react'
-import { createNavigationStore, NavigationStore } from '@/store'
+import { createNavigationStore, NavigationStore } from '@/store/navigation'
 
 const NavigationStoreContext = createContext<ReturnType<typeof createNavigationStore> | null>(null)
 
