@@ -1,20 +1,24 @@
 import { create } from "zustand/react"
 import { devtools, persist } from "zustand/middleware"
+import { Entry } from "@/types/entry"
 
 export type Page = "journal" | "entries"
 
 export type ZustandState = {
   page: Page
+  entries: Entry[]
 }
 
 export type ZustandActions = {
   setPage: (page: Page) => void
+  updateEntries: (entries: Entry[]) => void
 }
 
 export type ZustandStore = ZustandState & ZustandActions
 
 const defaultInitState: ZustandState = {
   page: "journal",
+  entries: [],
 }
 
 const createStore = (initState: ZustandState = defaultInitState) => {
@@ -24,6 +28,7 @@ const createStore = (initState: ZustandState = defaultInitState) => {
         (set) => ({
           ...initState,
           setPage: (page) => set(() => ({ page })),
+          updateEntries: (entries) => set(() => ({ entries })),
         }),
         { name: "uncalled-for" }
       ),

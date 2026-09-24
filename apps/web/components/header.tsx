@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select"
-import { Show, SignInButton, useAuth, UserButton } from "@clerk/nextjs";
+import { Show, SignInButton, UserButton } from "@clerk/nextjs";
 import { useStore } from "@/store";
 import { useHydration } from '@/hooks/use-hydration'
 import { useRouter } from "next/navigation";
@@ -20,7 +20,6 @@ const items = [
 ]
 
 export function Header() {
-  const { isSignedIn } = useAuth()
   const router = useRouter()
   const hasHydrated = useHydration()
   const { page, setPage } = useStore(state => state)
@@ -39,7 +38,7 @@ export function Header() {
           Uncalled for
         </span>
         {hasHydrated ?
-          <Select items={items} value={page} onValueChange={handleChange} disabled={!isSignedIn}>
+          <Select items={items} value={page} onValueChange={handleChange}>
             <SelectTrigger className="h-fit! p-0 bg-transparent text-xs text-foreground/60">
               <SelectValue />
             </SelectTrigger>
