@@ -5,7 +5,7 @@ export default clerkMiddleware(async (auth, request) => {
   const { userId } = await auth()
   const { pathname } = request.nextUrl
 
-  const isProtectedRoute = pathname.startsWith("/journals")
+  const isProtectedRoute = pathname.startsWith("/entries")
 
   if (isProtectedRoute && !userId) {
     const url = request.nextUrl.clone()
