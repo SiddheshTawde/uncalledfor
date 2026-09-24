@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { EntryCard } from "@/components/entry-card";
-import { useEntriesStore } from "@/providers/entries-provider";
+import { useAppStore } from "@/providers/store-provider";
 
 export default function Page() {
-    const { entries } = useEntriesStore(state => state)
+    const { entries } = useAppStore(state => state)
     if (entries.length === 0) {
         return (
             <main className="flex-1 w-full max-w-3xl mx-auto flex flex-col items-center justify-center px-6 py-4">
