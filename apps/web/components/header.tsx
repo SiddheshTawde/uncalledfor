@@ -10,9 +10,8 @@ import {
   SelectValue,
 } from "@workspace/ui/components/select"
 import { Show, SignInButton, UserButton } from "@clerk/nextjs";
-import { useStore } from "@/store";
-import { useHydration } from '@/hooks/use-hydration'
 import { useRouter } from "next/navigation";
+import { useNavigationStore } from "@/providers/navigation-provider";
 
 const items = [
   { label: "a journal", value: "journal" },
@@ -21,8 +20,7 @@ const items = [
 
 export function Header() {
   const router = useRouter()
-  const hasHydrated = useHydration()
-  const { page, setPage } = useStore(state => state)
+  const { page, setPage, hasHydrated } = useNavigationStore(state => state)
 
   const handleChange = (value: "journal" | "entries" | null) => {
     if (!value) return

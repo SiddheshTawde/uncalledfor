@@ -1,12 +1,11 @@
 "use client"
 
 import { EntryCard } from "@/components/entry-card";
-import { useStore } from "@/store";
+import { Entry } from "@/types/entry";
 import Link from "next/link";
 
 export default function Page() {
-    const { entries } = useStore();
-
+    const entries: Entry[] = []
     if (entries.length === 0) {
         return (
             <main className="flex-1 w-full max-w-3xl mx-auto flex flex-col items-center justify-center px-6 py-4">

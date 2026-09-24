@@ -1,43 +1,47 @@
-import { create } from "zustand/react"
+import { createStore } from "zustand/vanilla"
 import { devtools, persist } from "zustand/middleware"
-import { Entry } from "@/types/entry"
 
 export type Page = "journal" | "entries"
 
-export type ZustandState = {
+export type NavigationState = {
   page: Page
-  entries: Entry[]
+  hasHydrated: boolean
 }
 
-export type ZustandActions = {
+export type NavigationActions = {
   setPage: (page: Page) => void
-  updateEntries: (entries: Entry[]) => void
+  setHasHydrated: (state: boolean) => void
 }
 
-export type ZustandStore = ZustandState & ZustandActions
+export type NavigationStore = NavigationState & NavigationActions
 
-const defaultInitState: ZustandState = {
+const defaultInitState: NavigationState = {
   page: "journal",
-  entries: [],
+  hasHydrated: false,
 }
 
-const createStore = (initState: ZustandState = defaultInitState) => {
-  return create<ZustandStore>()(
+export const createNavigationStore = (
+  initState: NavigationState = defaultInitState
+) => {
+  return createStore<NavigationStore>()(
     devtools(
       persist(
         (set) => ({
           ...initState,
           setPage: (page) => set(() => ({ page })),
-          updateEntries: (entries) => set(() => ({ entries })),
+          setHasHydrated: (state) => set({ hasHydrated: state }),
         }),
-        { name: "uncalled-for" }
+        {
+          name: "uncalled-for-navigation",
+          onRehydrateStorage: () => (state) => {
+            state?.setHasHydrated(true)
+          },
+        }
       ),
       {
-        name: "uncalled-for",
+        name: "uncalled-for-navigation",
         enabled: process.env.NODE_ENV !== "production", // Disable in prod for performance
       }
     )
   )
 }
-
-export const useStore = createStore()
