@@ -1,9 +1,9 @@
 "use client"
 
-import * as React from "react"
-import { ClerkProvider } from "@clerk/nextjs"
-import { ThemeProvider as NextThemesProvider } from "@wrksz/themes/next"
-import { StoreProvider } from "@/providers/store-provider"
+import * as React from "react";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider as NextThemesProvider } from "@wrksz/themes/next";
+import { AppStoreProvider } from "@/providers/app-store-provider";
 
 function Provider({
   children,
@@ -18,10 +18,10 @@ function Provider({
       {...props}
     >
       <ClerkProvider>
-        <StoreProvider>{children}</StoreProvider>
+        <AppStoreProvider>{children}</AppStoreProvider>
       </ClerkProvider>
     </NextThemesProvider>
-  )
+  );
 }
 
-export { Provider }
+export { Provider };
