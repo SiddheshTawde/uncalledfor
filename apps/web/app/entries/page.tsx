@@ -21,19 +21,8 @@ export default function Page() {
     }
 
     return (
-        <motion.main
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ ease: 'easeInOut', duration: 0.5 }}
-            className="flex-1 w-full max-w-3xl mx-auto flex flex-col px-6 py-4"
-        >
-            {entries && entries.length === 0 ? (
-                <div>
-                    <p>No entries yet.<br />Go write something.</p>
-                </div>
-            ) : (
-                entries?.map(entry => <EntryCard key={entry.id} entry={entry} />)
-            )}
-        </motion.main>
+        <main className="flex-1 w-full max-w-3xl mx-auto flex flex-col gap-6 px-6 py-4">
+            {entries?.map(entry => <EntryCard key={entry.id} entry={entry} />)}
+        </main>
     )
 }
