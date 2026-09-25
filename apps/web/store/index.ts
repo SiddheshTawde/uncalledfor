@@ -14,12 +14,16 @@ export type NavigationSlice = {
   setPage: (page: Page) => void
 }
 
-export type StoreState = EntriesSlice & NavigationSlice & {
-  hasHydrated: boolean
-  setHasHydrated: (state: boolean) => void
-}
+export type StoreState = EntriesSlice &
+  NavigationSlice & {
+    hasHydrated: boolean
+    setHasHydrated: (state: boolean) => void
+  }
 
-const defaultInitState: Omit<StoreState, "setEntries" | "setPage" | "setHasHydrated"> = {
+const defaultInitState: Omit<
+  StoreState,
+  "setEntries" | "setPage" | "setHasHydrated"
+> = {
   entries: [],
   page: "journal",
   hasHydrated: false,
