@@ -2,6 +2,9 @@
   "name": "mobile",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "main": "expo-router/entry",
   "scripts": {
     "dev": "expo start",
@@ -16,25 +19,25 @@
     "@workspace/date": "workspace:*",
     "@workspace/domain": "workspace:*",
     "@workspace/store": "workspace:*",
-    "expo": "~54.0.0",
-    "expo-auth-session": "~7.0.11",
-    "expo-constants": "~18.0.13",
-    "expo-linking": "~8.0.12",
-    "expo-router": "~6.0.0",
-    "expo-secure-store": "^15.0.0",
-    "expo-status-bar": "~3.0.0",
-    "expo-web-browser": "~15.0.11",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-native": "0.81.5",
-    "react-native-safe-area-context": "~5.6.2",
-    "react-native-screens": "~4.16.0",
+    "expo": "~57.0.25",
+    "expo-auth-session": "~57.0.13",
+    "expo-constants": "~57.0.19",
+    "expo-linking": "~57.0.11",
+    "expo-router": "~57.0.23",
+    "expo-secure-store": "^57.0.4",
+    "expo-status-bar": "~57.0.1",
+    "expo-web-browser": "~57.0.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.2",
     "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@types/react": "^19.1.17",
-    "@types/react-dom": "^19.1.11",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
     "eslint": "^9",
-    "typescript": "~5.9.2"
+    "typescript": "~6.0.3"
   }
 }
