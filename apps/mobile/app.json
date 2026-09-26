@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Uncalled For",
+    "slug": "uncalled-for",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "scheme": "uncalledfor",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "plugins": [
+      "expo-router",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

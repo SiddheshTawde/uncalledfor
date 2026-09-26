@@ -2,8 +2,7 @@
 
 import { useStore } from "zustand";
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
-import { AppStore, createAppStore, StoreState } from "@/store/app-store";
-import { Entry } from "@/types/entry";
+import { AppStore, createAppStore, StoreState } from "@workspace/store";
 import { getEntries, syncEntries } from "@/app/actions/journal";
 import { useUser } from "@clerk/nextjs";
 
@@ -38,12 +37,7 @@ function AppStoreSync() {
       .then((serverEntries) => {
         if (cancelled) return;
 
-        const normalizedEntries = serverEntries.map((entry) => ({
-          ...entry,
-          created_at: new Date(entry.created_at),
-        })) as Entry[];
-
-        setEntries(normalizedEntries);
+        setEntries(serverEntries);
         readyToSync.current = true;
       })
       .catch((error) => {

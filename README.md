@@ -17,7 +17,8 @@ the app drops the bit and responds like an actual human would.
 
 ## Stack
 
-- **Framework:** Next.js (App Router, Server Actions)
+- **Framework:** Next.js (App Router, Server Actions, authenticated API routes)
+- **Mobile:** React Native with Expo Router
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Auth:** Clerk
@@ -31,7 +32,7 @@ the app drops the bit and responds like an actual human would.
 ```bash
 git clone <your-repo-url>
 cd uncalled-for
-npm install
+pnpm install
 ```
 
 ### 2. Set up environment variables
@@ -77,6 +78,29 @@ npm run dev
 
 Visit `http://localhost:3000`.
 
+### Mobile app
+
+Copy `apps/mobile/.env.example` to `apps/mobile/.env` and set:
+
+```
+EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=your_existing_clerk_publishable_key
+EXPO_PUBLIC_API_URL=http://localhost:3000
+```
+
+Use your computer's LAN IP instead of `localhost` when running on a physical
+device. The mobile app uses the existing Clerk application and the authenticated
+Next API at `/api/entries`; database and Groq credentials remain server-only.
+
+Start the mobile app with:
+
+```bash
+pnpm --filter mobile start
+```
+
+The app supports Clerk sign-in, journal submission, AI comments, local Zustand
+state backed by AsyncStorage, entry listing, and deletion. The web and mobile
+clients share the domain types, store, date formatting, and API client packages.
+
 ## How the advice engine works
 
 Each entry is sent to Groq along with a system prompt that defines the app's
@@ -88,7 +112,7 @@ touching application code.
 
 ## Roadmap / ideas
 
-- [ ] Mobile app (React Native/Expo), reusing the same advice-engine logic
+- [x] Mobile app (React Native/Expo), reusing the same advice-engine API
 - [ ] Mood tagging per entry
 - [ ] Entry search and filtering
 - [ ] Export entries
