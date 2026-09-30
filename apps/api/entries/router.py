@@ -32,6 +32,8 @@ class ClerkSettings(BaseSettings):
 
 
 settings = ClerkSettings()
+SYSTEM_PROMPT_PATH = Path(__file__).resolve().parents[1] / "prompts" / "comments.prompt.md"
+SYSTEM_PROMPT = SYSTEM_PROMPT_PATH.read_text(encoding="utf-8")
 
 clerk_client = Clerk()
 groq_client = AsyncGroq(api_key=settings.groq_api_key)
@@ -103,11 +105,7 @@ async def stream_comment(entry_id: UUID, entry_text: str) -> AsyncIterator[str]:
             messages=[
                 {
                     "role": "system",
-                    "content": (
-                        "Respond to the user's journal entry with a brief, warm, "
-                        "thoughtful reflection. Be specific and nonjudgmental. "
-                        "Do not diagnose or give medical advice."
-                    ),
+                    "content": SYSTEM_PROMPT,
                 },
                 {"role": "user", "content": entry_text},
             ],
