@@ -47,16 +47,7 @@ button:focus-visible, textarea:focus-visible, a:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 
-.wordmark {
-  color: var(--ink);
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0;
-  text-decoration: none;
-}
-
-.wordmark span { color: var(--coral); }
-.private-label, .eyebrow, .page-mark, .character-count, .entry-item time, .comment-label {
+.private-label, .entry-item time, .comment-label {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0;
@@ -70,8 +61,6 @@ button:focus-visible, textarea:focus-visible, a:focus-visible {
   padding: clamp(100px, 18vh, 180px) 0 120px;
   animation: rise-in 500ms ease-out both;
 }
-
-.eyebrow { margin: 0 0 22px; color: var(--green); }
 
 h1 {
   margin: 0;
@@ -91,27 +80,6 @@ h1 {
 }
 
 .auth-actions { display: flex; align-items: center; gap: 22px; margin-top: 34px; }
-.primary-button {
-  min-height: 48px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 22px;
-  padding: 0 19px;
-  border: 1px solid var(--green);
-  border-radius: 2px;
-  background: var(--green);
-  color: white;
-  font-size: 13px;
-  font-weight: 600;
-  transition: background 150ms ease, color 150ms ease, transform 150ms ease;
-}
-
-.primary-button:hover:not(:disabled) { background: #244b38; transform: translateY(-1px); }
-.primary-button:disabled { cursor: not-allowed; opacity: 0.48; }
-.text-button { padding: 10px 0; border: 0; background: transparent; color: var(--green); font-size: 13px; font-weight: 600; }
-.page-mark { padding: 22px 0; color: #8b968e; }
-
 .journal-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
@@ -123,33 +91,6 @@ h1 {
 .composer-section h1 { font-size: 56px; }
 .composer-copy { margin-top: 15px; font-size: 14px; }
 
-.entry-form {
-  margin-top: 32px;
-  padding: 17px 18px 14px;
-  border: 1px solid #d9e2d9;
-  border-radius: 2px;
-  background: #fff;
-  box-shadow: 0 10px 30px #273a2910;
-}
-
-.entry-form textarea {
-  width: 100%;
-  min-height: 190px;
-  resize: vertical;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--ink);
-  font-size: 15px;
-  line-height: 1.75;
-}
-
-.entry-form textarea::placeholder { color: #a0aaa2; }
-.entry-form textarea:focus-visible { outline: 0; }
-.form-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 13px; border-top: 1px solid #edf0ec; }
-.character-count { color: #9aa39c; }
-.form-footer .primary-button { min-height: 40px; padding: 0 14px; }
 .privacy-note { display: flex; align-items: center; gap: 8px; margin: 18px 0 0; color: var(--muted); font-size: 11px; }
 .privacy-note span { color: #719c62; font-size: 8px; }
 .error-message { margin: 14px 0 0; color: #a74434; font-size: 13px; }
@@ -167,7 +108,6 @@ h1 {
 .comment-label { display: block; margin-bottom: 7px; color: var(--green); font-family: var(--mono); font-size: 9px; font-style: normal; }
 .stream-cursor { display: inline-block; width: 2px; height: 1em; margin-left: 3px; vertical-align: -2px; background: var(--coral); animation: blink 800ms steps(2, start) infinite; }
 .typing-indicator { color: var(--coral); font-family: var(--mono); font-size: 20px; animation: blink 800ms steps(2, start) infinite; }
-.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 .setup-screen { padding-top: 18vh; }
 .setup-screen h1 { max-width: 650px; font-size: 58px; }
 .setup-copy { max-width: 560px; margin-top: 20px; color: var(--muted); line-height: 1.7; }
@@ -185,7 +125,7 @@ h1 {
   .journal-layout { grid-template-columns: 1fr; gap: 48px; padding: 54px 0 72px; }
   .composer-section h1 { font-size: 48px; }
   .entries-section { padding: 0; border: 0; }
-  .page-mark { padding-bottom: 18px; }
+  .ui-page-mark { padding-bottom: 18px; }
 }
 
 @media (max-width: 420px) {
@@ -194,7 +134,7 @@ h1 {
   .welcome h1 { font-size: 48px; }
   .composer-section h1 { font-size: 42px; }
   .auth-actions { align-items: flex-start; flex-direction: column; gap: 10px; }
-  .entry-form { padding: 14px; }
+  .ui-entry-form { padding: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

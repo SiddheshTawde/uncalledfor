@@ -1,0 +1,80 @@
+:root {
+  --ui-ink: #1c2822;
+  --ui-muted: #737e76;
+  --ui-line: #dce4dc;
+  --ui-green: #315f49;
+  --ui-coral: #cf634c;
+  --ui-mono: "DM Mono", monospace;
+}
+
+.ui-wordmark {
+  color: var(--ui-ink);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.ui-wordmark span { color: var(--ui-coral); }
+.ui-eyebrow, .ui-page-mark, .ui-character-count {
+  font-family: var(--ui-mono);
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+.ui-eyebrow { margin: 0 0 22px; color: var(--ui-green); }
+.ui-primary-button, .ui-text-button { font: inherit; cursor: pointer; }
+.ui-primary-button {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 0 19px;
+  border: 1px solid var(--ui-green);
+  border-radius: 2px;
+  background: var(--ui-green);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.ui-primary-button:hover:not(:disabled) { background: #244b38; transform: translateY(-1px); }
+.ui-primary-button:disabled { cursor: not-allowed; opacity: 0.48; }
+.ui-text-button { padding: 10px 0; border: 0; background: transparent; color: var(--ui-green); font-size: 13px; font-weight: 600; }
+.ui-page-mark { padding: 22px 0; color: #8b968e; }
+
+.ui-entry-form {
+  margin-top: 32px;
+  padding: 17px 18px 14px;
+  border: 1px solid #d9e2d9;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 10px 30px #273a2910;
+}
+
+.ui-entry-form textarea {
+  width: 100%;
+  min-height: 190px;
+  resize: vertical;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ui-ink);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.ui-entry-form textarea::placeholder { color: #a0aaa2; }
+.ui-entry-form textarea:focus-visible { outline: 0; }
+.ui-form-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 13px; border-top: 1px solid #edf0ec; }
+.ui-character-count { color: #9aa39c; }
+.ui-form-footer .ui-primary-button { min-height: 40px; padding: 0 14px; }
+.ui-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+
+@media (max-width: 420px) {
+  .ui-entry-form { padding: 14px; }
+}
